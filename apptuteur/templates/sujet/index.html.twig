@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sujets de stage
+{% endblock %}
+
+{% block body %}
+	<h1>Sujets de stage</h1>
+
+	{# --- Filtre par entreprise --- #}
+	<form method="get" class="mt-2">
+		<label for="entreprise">Filtrer par entreprise :</label>
+		<select name="entreprise" id="entreprise" onchange="this.form.submit()">
+			<option value="">Toutes</option>
+			{% for e in entreprises %}
+				<option value="{{ e }}" {% if filtre == e %} selected {% endif %}>
+					{{ e }}
+				</option>
+			{% endfor %}
+		</select>
+	</form>
+
+	{# --- Macro badge --- #}
+	{% macro badge(label) %}
+		<span class="badge-sujet">{{ label }}</span>
+	{% endmacro %}
+
+	{% import _self as macros %}
+
+	<div class="etudiants mt-4">
+		{% for s in sujets %}
+			<div class="etudiant">
+				<p>
+					Étudiant :
+					<strong>{{ s.etudiant }}</strong>
+					— Tuteur :
+					<strong>{{ s.tuteur }}</strong>
+					— Entreprise :
+					{{ s.entreprise }}
+				</p>
+				<p>
+					Sujet :
+					{{ macros.badge(s.sujet) }}
+				</p>
+			</div>
+		{% else %}
+			<p>Aucun sujet pour ce filtre.</p>
+		{% endfor %}
+	</div>
+{% endblock %}
+

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}App Tuteur{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        {% endblock %}
+    </head>
+    <body>
+        <nav>
+            <a href="/">App Tuteur</a>
+            <a href="{{ path('tuteur_index') }}">Tuteurs</a>
+            <a href="{{ path('etudiant_index') }}">Étudiants</a>
+            <a href="{{ path('sujet_index') }}">Sujets</a>
+            <a href="{{ path('sujet_index') }}">Sujets</a>
+
+
+        </nav>
+        <main>
+           {% block body %}{% endblock %}
+        </main>
+            {% block javascripts %}{% endblock %}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+    </body>
+</html>

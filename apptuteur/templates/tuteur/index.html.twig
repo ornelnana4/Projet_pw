@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des tuteurs
+{% endblock %}
+
+{% block body %}
+	<h1>Liste des tuteurs</h1>
+
+	<table>
+		<thead>
+			<tr>
+				<th>
+					<a href="?sort=nom&dir={{ dir == 'asc' ? 'desc' : 'asc' }}">
+						{{ 'Nom'|upper }}
+					</a>
+				</th>
+				<th>{{ 'Prenom'|upper }}</th>
+				<th>{{ 'Entreprise'|upper }}</th>
+				<th>{{ 'Email'|upper }}</th>
+				<th>{{ 'Telephone'|upper }}</th>
+				<th>{{ 'Etudiants'|upper }}</th>
+				<th>{{ 'Actions'|upper }}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for tuteur in tuteurs %}
+				<tr>
+					<td>{{ tuteur.nom|default('—') }}</td>
+					<td>{{ tuteur.prenom|default('—') }}</td>
+					<td>{{ tuteur.entreprise|default('—') }}</td>
+					<td>{{ tuteur.email|default('—') }}</td>
+					<td>{{ tuteur.telephone|default('—') }}</td>
+					<td>{{ tuteur.etudiants|length }}</td>
+					<td>
+                       <a href="{{ path('tuteur_show', {id: tuteur.id}) }}">Voir</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="7">Aucun tuteur</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
+

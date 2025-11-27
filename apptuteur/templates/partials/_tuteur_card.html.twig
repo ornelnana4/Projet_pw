@@ -1,0 +1,22 @@
+<div class="tuteur-card">
+	<h2>{{ tuteur.prenom }}
+		{{ tuteur.nom }}</h2>
+
+	<p>
+		<strong>Entreprise :</strong>
+		{{ tuteur.entreprise|default('—') }}</p>
+
+	<p>
+		<strong>Email :</strong>
+		<a href="mailto:{{ tuteur.email }}">{{ tuteur.email }}</a>
+	</p>
+
+	<p>
+		<strong>Téléphone :</strong>
+		{{ tuteur.telephone|default('—') }}</p>
+
+	{# bloc interne personnalisable #}
+	<div class="tuteur-card-actions"> {% block tuteur_actions %}{% endblock %}
+		</div>
+	</div>
+

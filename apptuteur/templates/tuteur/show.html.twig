@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tuteur
+	{{ tuteur.prenom }}
+	{{ tuteur.nom }}
+{% endblock %}
+
+{% block body %}
+	<h1>Détail du tuteur</h1>
+
+	{% embed 'partials/_tuteur_card.html.twig' with { tuteur: tuteur } %}
+		{% block tuteur_actions %}
+			<a class="btn-contact" href="mailto:{{ tuteur.email }}">Contacter</a>
+		{% endblock %}
+	{% endembed %}
+
+	<h2>Étudiants</h2>
+	<div class="etudiants">
+		{% for etu in tuteur.etudiants %}
+			<div class="etudiant">
+				<p>
+					<strong>{{ etu.prenom }}
+						{{ etu.nom }}</strong>
+				</p>
+				<p>
+					Sujet :
+					<span class="badge-sujet">{{ etu.sujet }}</span>
+				</p>
+			</div>
+		{% else %}
+			<p>Aucun étudiant pour ce tuteur.</p>
+		{% endfor %}
+	</div>
+{% endblock %}
+
