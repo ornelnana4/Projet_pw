@@ -1,5 +1,6 @@
 {
     "require": {
-        "symfony/twig-bundle": "^7.3"
+        "symfony/twig-bundle": "^7.3",
+        "symfony/orm-pack": "*"
     }
 }
